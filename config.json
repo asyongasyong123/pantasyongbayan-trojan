@@ -4,26 +4,19 @@
     {
       "tag": "trojan-ws",
       "port": 10001,
-      "listen": "0.0.0.0",
+      "listen": "127.0.0.1",
       "protocol": "trojan",
       "settings": {"clients": [{"password": "newbielangako"}]},
       "sniffing": {"enabled": true, "metadataOnly": false},
       "streamSettings": {
         "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "alpn": ["h2", "http/1.1"],
-          "fingerprint": "chrome",
-          "allowInsecure": true,
-          "certificates": [{}]
-        },
         "wsSettings": {"path": "/trojan-jonathan?ed=2180"}
       }
     },
     {
       "tag": "vless-ws",
       "port": 10002,
-      "listen": "0.0.0.0",
+      "listen": "127.0.0.1",
       "protocol": "vless",
       "settings": {
         "clients": [{
@@ -37,13 +30,6 @@
       "sniffing": {"enabled": true, "metadataOnly": false},
       "streamSettings": {
         "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "alpn": ["h2", "http/1.1"],
-          "fingerprint": "chrome",
-          "allowInsecure": true,
-          "certificates": [{}]
-        },
         "wsSettings": {"path": "/vless-jonathan?ed=2180"}
       }
     }
