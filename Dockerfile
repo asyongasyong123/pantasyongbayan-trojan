@@ -1,8 +1,8 @@
 FROM teddysun/xray:latest AS xray-bin
-FROM openresty/openresty:alpine-fat
-COPY --from=xray-bin /usr/bin/xray /usr/local/bin/xray
+FROM envoyproxy/envoy:v1.31.10
+COPY --from=xray-bin /usr/bin/xray /usr/local/bin/
 RUN chmod +x /usr/local/bin/xray
 COPY config.json /etc/xray.json
-COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
+COPY envoy.yaml /etc/envoy/envoy.yaml
 EXPOSE 8080
-CMD ["/bin/sh", "-c", "openresty -g 'daemon off;' & xray run -c /etc/xray.json"]
+CMD ["/bin/sh", "-c", "xray run -c /etc/xray.json & sleep 3 && exec envoy -c /etc/envoy/envoy.yaml --log-level warn"]
