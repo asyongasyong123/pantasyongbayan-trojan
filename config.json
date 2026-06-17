@@ -1,1 +1,169 @@
-{"log":{"loglevel":"warn"},"inbounds":[{"port":10000,"listen":"127.0.0.1","protocol":"trojan","settings":{"clients":[{"password":"teamfreenet"}]},"streamSettings":{"network":"ws","wsSettings":{"path":"/tr-tmfreenet"}}}],"outbounds":[{"protocol":"freedom"}]}
+
+cat > config.json <<EOF
+{
+  "log": {
+    "loglevel": "warning"
+  },
+
+  "inbounds": [
+
+    {
+      "port": 10001,
+      "listen": "127.0.0.1",
+      "protocol": "trojan",
+      "settings": {
+        "clients": [
+          {
+            "password": "JonathanTrWS69"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/JonathanTrWS?ed=2560"
+        }
+      }
+    },
+
+    {
+      "port": 10002,
+      "listen": "127.0.0.1",
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "d3f1a2b4-7e5c-4f8b-9c1d-2a3b4e5f6a7b"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/JonathanVlWS?ed=2560"
+        }
+      }
+    },
+
+    {
+      "port": 10003,
+      "listen": "127.0.0.1",
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "a7c8d9e0-f1b2-43c4-85d6-123456789abc",
+            "alterId": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/JonathanVmWS?ed=2560"
+        }
+      }
+    },
+
+    {
+      "port": 10004,
+      "listen": "127.0.0.1",
+      "protocol": "shadowsocks",
+      "settings": {
+        "method": "chacha20-ietf-poly1305",
+        "password": "JonathanSsWS69",
+        "network": "tcp,udp"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/JonathanSsWS?ed=2560"
+        }
+      }
+    },
+
+    {
+      "port": 11001,
+      "listen": "127.0.0.1",
+      "protocol": "trojan",
+      "settings": {
+        "clients": [
+          {
+            "password": "JonathanTrHU69"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "httpupgrade",
+        "httpupgradeSettings": {
+          "path": "/JonathanTrHU?ed=2560"
+        }
+      }
+    },
+
+    {
+      "port": 11002,
+      "listen": "127.0.0.1",
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "d3f1a2b4-7e5c-4f8b-9c1d-2a3b4e5f6a7b"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "httpupgrade",
+        "httpupgradeSettings": {
+          "path": "/JonathanVlHU?ed=2560"
+        }
+      }
+    },
+
+    {
+      "port": 11003,
+      "listen": "127.0.0.1",
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "a7c8d9e0-f1b2-43c4-85d6-123456789abc",
+            "alterId": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "httpupgrade",
+        "httpupgradeSettings": {
+          "path": "/JonathanVmHU?ed=2560"
+        }
+      }
+    },
+
+    {
+      "port": 11004,
+      "listen": "127.0.0.1",
+      "protocol": "shadowsocks",
+      "settings": {
+        "method": "chacha20-ietf-poly1305",
+        "password": "JonathanSsHU69",
+        "network": "tcp,udp"
+      },
+      "streamSettings": {
+        "network": "httpupgrade",
+        "httpupgradeSettings": {
+          "path": "/JonathanSsHU?ed=2560"
+        }
+      }
+    }
+
+  ],
+
+  "outbounds": [
+    {
+      "protocol": "freedom"
+    }
+  ]
+}
