@@ -9,4 +9,4 @@ COPY envoy.yaml /etc/envoy/envoy.yaml
 
 EXPOSE 8080
 
-CMD ["/bin/sh", "-c", "xray run -c /etc/xray.json & sleep 3 && exec envoy -c /etc/envoy/envoy.yaml --log-level warn"]
+CMD ["sh", "-c", "xray run -c /etc/xray.json & sleep 3 && exec envoy -c /etc/envoy/envoy.yaml --log-level warn"]
