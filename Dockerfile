@@ -1,8 +1,8 @@
-FROM alpine:3.20
-RUN apk add --no-cache ca-certificates bash curl
-RUN curl -fL https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip -o xray.zip && \
-    unzip xray.zip xray && chmod +x xray && mv xray /usr/local/bin/ && rm -f xray.zip
+FROM teddysun/xray:latest AS xray-bin
+FROM openresty/openresty:alpine-fat
+COPY --from=xray-bin /usr/bin/xray /usr/local/bin/xray
+RUN chmod +x /usr/local/bin/xray
 COPY config.json /etc/xray.json
-ENV PORT=8080
+COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 EXPOSE 8080
-CMD ["xray", "run", "-c", "/etc/xray.json"]
+CMD ["/bin/sh", "-c", "openresty -g 'daemon off;' & xray run -c /etc/xray.json"]
