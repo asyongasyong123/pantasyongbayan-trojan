@@ -1,21 +1,20 @@
-FROM alpine:3.19 AS xray-bin
-RUN apk add --no-cache curl unzip ca-certificates
-WORKDIR /tmp
-RUN curl -fL https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip -o xray.zip \
- && unzip xray.zip xray \
- && chmod +x xray \
- && mv xray /usr/local/bin/xray \
- && rm -rf /tmp/*
+# Kuhaon ang Xray
+FROM ghcr.io/xtls/xray-core:latest AS xray
 
+# Base nga OpenResty
 FROM openresty/openresty:alpine
-RUN apk add --no-cache ca-certificates
 
-COPY --from=xray-bin /usr/local/bin/xray /usr/local/bin/xray
-RUN chmod +x /usr/local/bin/xray
+# Ibutang ang gikinahanglan
+COPY --from=xray /usr/bin/xray /usr/local/bin/xray
+RUN chmod +x /usr/local/bin/xray && \
+    apk add --no-cache ca-certificates
 
-COPY config.json /etc/xray.json
+# Ibutang ang mga config
+COPY config.json /etc/xray/config.json
 COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 
+# Port
 EXPOSE 8080
 
-CMD ["/bin/sh", "-c", "set -e; xray run -c /etc/xray.json & sleep 5; openresty -g 'daemon off;'"]
+# Saktong pagsugod
+CMD ["/bin/sh", "-c", "set -e; xray run -c /etc/xray/config.json & sleep 6; openresty -g 'daemon off;'"]
