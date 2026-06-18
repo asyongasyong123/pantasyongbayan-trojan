@@ -6,5 +6,5 @@ xray run -c /etc/xray/config.json &
 
 sleep 6
 
-echo "✅ Starting OpenResty..."
-openresty -g "daemon off;"
+echo "✅ Starting Nginx..."
+nginx -g "daemon off;"
