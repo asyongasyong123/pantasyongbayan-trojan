@@ -1,13 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
-# Sugdi ang Xray
-echo "Starting Xray..."
+echo "✅ Starting Xray..."
 xray run -c /etc/xray/config.json &
 
-# Maghulat 5 segundos aron andam na ang Xray
-sleep 5
+sleep 6
 
-# Sugdi ang OpenResty
-echo "Starting OpenResty..."
+echo "✅ Starting OpenResty..."
 openresty -g "daemon off;"
