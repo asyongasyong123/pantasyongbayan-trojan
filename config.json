@@ -1,80 +1,32 @@
 {
-  "log": {
-    "loglevel": "warning"
-  },
+  "log": {"loglevel": "warning"},
   "inbounds": [
-    {
-      "port": 10001,
-      "listen": "127.0.0.1",
-      "protocol": "trojan",
-      "settings": {
-        "clients": [{"password": "JonathanTrWS69", "level": 0}]
-      },
-      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]},
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {"path": "/JonathanTrWS?ed=2560"},
-        "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}
-      }
-    },
-    {
-      "port": 10002,
-      "listen": "127.0.0.1",
-      "protocol": "vless",
-      "settings": {
-        "clients": [{"id": "d3f1a2b4-7e5c-4f8b-9c1d-2a3b4e5f6a7b", "level": 0}],
-        "decryption": "none"
-      },
-      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]},
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {"path": "/JonathanVlWS?ed=2560"},
-        "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}
-      }
-    },
-    {
-      "port": 11001,
-      "listen": "127.0.0.1",
-      "protocol": "trojan",
-      "settings": {
-        "clients": [{"password": "JonathanTrHU69", "level": 0}]
-      },
-      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]},
-      "streamSettings": {
-        "network": "httpupgrade",
-        "httpupgradeSettings": {"path": "/JonathanTrHU?ed=2560"},
-        "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}
-      }
-    },
-    {
-      "port": 11002,
-      "listen": "127.0.0.1",
-      "protocol": "vless",
-      "settings": {
-        "clients": [{"id": "d3f1a2b4-7e5c-4f8b-9c1d-2a3b4e5f6a7b", "level": 0}],
-        "decryption": "none"
-      },
-      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]},
-      "streamSettings": {
-        "network": "httpupgrade",
-        "httpupgradeSettings": {"path": "/JonathanVlHU?ed=2560"},
-        "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}
-      }
-    },
+    // ... (bilin ang daan nga WS/HTTPUpgrade)
+
+    // gRPC Entries
     {
       "port": 12001,
       "listen": "127.0.0.1",
       "protocol": "vless",
-      "settings": {
-        "clients": [{"id": "d3f1a2b4-7e5c-4f8b-9c1d-2a3b4e5f6a7b", "level": 0}],
-        "decryption": "none"
-      },
+      "settings": {"clients": [{"id": "d3f1a2b4-7e5c-4f8b-9c1d-2a3b4e5f6a7b", "level": 0}], "decryption": "none"},
       "sniffing": {"enabled": true, "destOverride": ["http", "tls"]},
-      "streamSettings": {
-        "network": "grpc",
-        "grpcSettings": {"serviceName": "JonathanGrpc", "multiMode": false},
-        "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}
-      }
+      "streamSettings": {"network": "grpc", "grpcSettings": {"serviceName": "JonathanGrpcVless", "multiMode": false}, "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}}
+    },
+    {
+      "port": 12002,
+      "listen": "127.0.0.1",
+      "protocol": "trojan",
+      "settings": {"clients": [{"password": "JonathanTrGrpc69", "level": 0}]},
+      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]},
+      "streamSettings": {"network": "grpc", "grpcSettings": {"serviceName": "JonathanGrpcTr", "multiMode": false}, "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}}
+    },
+    {
+      "port": 12003,
+      "listen": "127.0.0.1",
+      "protocol": "vmess",
+      "settings": {"clients": [{"id": "a7c8d9e0-f1b2-43c4-85d6-123456789abc", "alterId": 0, "level": 0}]},
+      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]},
+      "streamSettings": {"network": "grpc", "grpcSettings": {"serviceName": "JonathanGrpcVm", "multiMode": false}, "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}}
     }
   ],
   "outbounds": [{"protocol": "freedom", "tag": "direct"}]
