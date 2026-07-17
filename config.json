@@ -29,25 +29,25 @@
       "port": 11001, "listen": "127.0.0.1", "protocol": "trojan",
       "settings": {"clients": [{"password": "freenet", "level": 0}]},
       "sniffing": {"enabled": true, "destOverride": ["http", "tls"]},
-      "streamSettings": {"network": "httpupgrade", "httpupgradeSettings": {"path": "/tr-hu-freenet?ed=2560"}, "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}}
+      "streamSettings": {"network": "httpupgrade", "httpupgradeSettings": {"path": "/trhu-freenet?ed=2560"}, "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}}
     },
     {
       "port": 11002, "listen": "127.0.0.1", "protocol": "vless",
       "settings": {"clients": [{"id": "d3f1a2b4-7e5c-4f8b-9c1d-2a3b4e5f6a7b", "level": 0}], "decryption": "none"},
       "sniffing": {"enabled": true, "destOverride": ["http", "tls"]},
-      "streamSettings": {"network": "httpupgrade", "httpupgradeSettings": {"path": "/vl-hu-freenet?ed=2560"}, "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}}
+      "streamSettings": {"network": "httpupgrade", "httpupgradeSettings": {"path": "/vlhu-freenet?ed=2560"}, "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}}
     },
     {
       "port": 11003, "listen": "127.0.0.1", "protocol": "vmess",
       "settings": {"clients": [{"id": "a7c8d9e0-f1b2-43c4-85d6-123456789abc", "alterId": 0, "level": 0}]},
       "sniffing": {"enabled": true, "destOverride": ["http", "tls"]},
-      "streamSettings": {"network": "httpupgrade", "httpupgradeSettings": {"path": "/vm-hu-freenet?ed=2560"}, "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}}
+      "streamSettings": {"network": "httpupgrade", "httpupgradeSettings": {"path": "/vmhu-freenet?ed=2560"}, "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}}
     },
     {
       "port": 11004, "listen": "127.0.0.1", "protocol": "shadowsocks",
       "settings": {"method": "chacha20-ietf-poly1305", "password": "freenet", "network": "tcp,udp"},
       "sniffing": {"enabled": true, "destOverride": ["http", "tls"]},
-      "streamSettings": {"network": "httpupgrade", "httpupgradeSettings": {"path": "/ss-hu-freenet?ed=2560"}, "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}}
+      "streamSettings": {"network": "httpupgrade", "httpupgradeSettings": {"path": "/sshu-freenet?ed=2560"}, "sockopt": {"tcpKeepAlive": true, "tcpKeepAliveIdle": 30, "tcpKeepAliveInterval": 15, "tcpKeepAliveProbes": 5}}
     }
   ],
   "outbounds": [{"protocol": "freedom", "tag": "direct"}]
