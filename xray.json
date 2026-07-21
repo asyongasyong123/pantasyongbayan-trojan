@@ -1,120 +1,55 @@
+cat > config.json <<'EOF'
 {
-  "log": {
-    "loglevel": "warning"
+  "log": { "loglevel": "warning" },
+  "policy": {
+    "levels": {
+      "0": {
+        "handshake": 3,
+        "connIdle": 3600,
+        "uplinkOnly": 0,
+        "downlinkOnly": 0,
+        "bufferSize": 2097152
+      }
+    }
   },
   "inbounds": [
     {
+      "tag": "trojan-ws",
       "port": 10001,
       "listen": "127.0.0.1",
       "protocol": "trojan",
-      "settings": {
-        "clients": [
-          {
-            "password": "freenet",
-            "level": 0
-          }
-        ]
-      },
-      "sniffing": {
-        "enabled": true,
-        "destOverride": ["http", "tls"]
-      },
+      "settings": { "clients": [{"password": "kiana-2", "level": 0}] },
+      "sniffing": { "enabled": true, "destOverride": ["http","tls","quic"], "routeOnly": true },
       "streamSettings": {
         "network": "ws",
-        "wsSettings": {
-          "path": "/tr-freenet?ed=2560"
-        },
+        "wsSettings": { "path": "/tr-ws?ed=2560", "maxEarlyData": 1048576 },
         "sockopt": {
+          "tcpNoDelay": true,
+          "tcpFastOpen": true,
           "tcpKeepAlive": true,
-          "tcpKeepAliveIdle": 30,
-          "tcpKeepAliveInterval": 15,
-          "tcpKeepAliveProbes": 5
+          "tcpKeepAliveIdle": 15,
+          "tcpKeepAliveInterval": 10,
+          "tcpKeepAliveCount": 5
         }
       }
     },
     {
+      "tag": "vless-ws",
       "port": 10002,
       "listen": "127.0.0.1",
       "protocol": "vless",
-      "settings": {
-        "clients": [
-          {
-            "id": "d3f1a2b4-7e5c-4f8b-9c1d-2a3b4e5f6a7b",
-            "level": 0
-          }
-        ],
-        "decryption": "none"
-      },
-      "sniffing": {
-        "enabled": true,
-        "destOverride": ["http", "tls"]
-      },
+      "settings": { "clients": [{"id": "a1b2c3d4-5678-40ef-98ab-cdef01234567", "level": 0}], "decryption": "none" },
+      "sniffing": { "enabled": true, "destOverride": ["http","tls","quic"], "routeOnly": true },
       "streamSettings": {
         "network": "ws",
-        "wsSettings": {
-          "path": "/vl-freenet?ed=2560"
-        },
+        "wsSettings": { "path": "/vl-ws?ed=2560", "maxEarlyData": 1048576 },
         "sockopt": {
+          "tcpNoDelay": true,
+          "tcpFastOpen": true,
           "tcpKeepAlive": true,
-          "tcpKeepAliveIdle": 30,
-          "tcpKeepAliveInterval": 15,
-          "tcpKeepAliveProbes": 5
-        }
-      }
-    },
-    {
-      "port": 10003,
-      "listen": "127.0.0.1",
-      "protocol": "vmess",
-      "settings": {
-        "clients": [
-          {
-            "id": "a7c8d9e0-f1b2-43c4-85d6-123456789abc",
-            "alterId": 0,
-            "level": 0
-          }
-        ]
-      },
-      "sniffing": {
-        "enabled": true,
-        "destOverride": ["http", "tls"]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/vm-freenet?ed=2560"
-        },
-        "sockopt": {
-          "tcpKeepAlive": true,
-          "tcpKeepAliveIdle": 30,
-          "tcpKeepAliveInterval": 15,
-          "tcpKeepAliveProbes": 5
-        }
-      }
-    },
-    {
-      "port": 10004,
-      "listen": "127.0.0.1",
-      "protocol": "shadowsocks",
-      "settings": {
-        "method": "chacha20-ietf-poly1305",
-        "password": "freenet",
-        "network": "tcp,udp"
-      },
-      "sniffing": {
-        "enabled": true,
-        "destOverride": ["http", "tls"]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/ss-freenet?ed=2560"
-        },
-        "sockopt": {
-          "tcpKeepAlive": true,
-          "tcpKeepAliveIdle": 30,
-          "tcpKeepAliveInterval": 15,
-          "tcpKeepAliveProbes": 5
+          "tcpKeepAliveIdle": 15,
+          "tcpKeepAliveInterval": 10,
+          "tcpKeepAliveCount": 5
         }
       }
     }
@@ -122,7 +57,12 @@
   "outbounds": [
     {
       "protocol": "freedom",
-      "tag": "direct"
+      "settings": {
+        "domainStrategy": "UseIPv4v6",
+        "tcpKeepAliveIdle": 15,
+        "tcpKeepAliveInterval": 10
+      }
     }
   ]
 }
+EOF
