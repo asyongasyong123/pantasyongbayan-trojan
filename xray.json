@@ -1,15 +1,6 @@
 {
-  "log": { "loglevel": "warning" },
-  "policy": {
-    "levels": {
-      "0": {
-        "handshake": 3,
-        "connIdle": 3600,
-        "uplinkOnly": 0,
-        "downlinkOnly": 0,
-        "bufferSize": 2097152
-      }
-    }
+  "log": {
+    "loglevel": "warning"
   },
   "inbounds": [
     {
@@ -19,29 +10,25 @@
       "settings": {
         "clients": [
           {
-            "password": "freenet",
+            "password": "xray-Con",
             "level": 0
           }
         ]
       },
       "sniffing": {
         "enabled": true,
-        "destOverride": ["http", "tls", "quic"],
-        "routeOnly": true
+        "destOverride": ["http", "tls"]
       },
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "/trojan-freenet?ed=2560",
-          "maxEarlyData": 1048576
+          "path": "/tr-xray-ConFig?ed=2560"
         },
         "sockopt": {
-          "tcpNoDelay": true,
-          "tcpFastOpen": true,
           "tcpKeepAlive": true,
-          "tcpKeepAliveIdle": 15,
-          "tcpKeepAliveInterval": 10,
-          "tcpKeepAliveCount": 5
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveProbes": 5
         }
       }
     },
@@ -52,7 +39,7 @@
       "settings": {
         "clients": [
           {
-            "id": "a1b2c3d4-5678-40ef-98ab-cdef01234567",
+            "id": "f4a9b2c7-1d3e-4b5c-8d9e-0f1a2b3c4d5e",
             "level": 0
           }
         ],
@@ -60,22 +47,18 @@
       },
       "sniffing": {
         "enabled": true,
-        "destOverride": ["http", "tls", "quic"],
-        "routeOnly": true
+        "destOverride": ["http", "tls"]
       },
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "/vless-freenet?ed=2560",
-          "maxEarlyData": 1048576
+          "path": "/vl-xray-ConFig?ed=2560"
         },
         "sockopt": {
-          "tcpNoDelay": true,
-          "tcpFastOpen": true,
           "tcpKeepAlive": true,
-          "tcpKeepAliveIdle": 15,
-          "tcpKeepAliveInterval": 10,
-          "tcpKeepAliveCount": 5
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveProbes": 5
         }
       }
     }
@@ -83,11 +66,7 @@
   "outbounds": [
     {
       "protocol": "freedom",
-      "settings": {
-        "domainStrategy": "UseIPv4v6",
-        "tcpKeepAliveIdle": 15,
-        "tcpKeepAliveInterval": 10
-      }
+      "tag": "direct"
     }
   ]
 }
